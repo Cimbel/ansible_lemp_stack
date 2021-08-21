@@ -1,0 +1,38 @@
+---
+# change_config task for role web-server-nginx
+
+- name: php-fpm change user
+  replace:
+    path: "{{ dest_php_fpm_conf }}" 
+    regexp: 'user = apache'
+    replace: 'user = nginx'
+
+- name: php-fpm change group
+  replace:
+    path: "{{ dest_php_fpm_conf }}"
+    regexp: 'group = apache'
+    replace: 'group = nginx'
+
+- name: php-fpm change listen on socket
+  replace:
+    path: "{{ dest_php_fpm_conf }}"
+    regexp: 'listen = 127.0.0.1:9000'
+    replace: 'listen = /var/run/php-fpm/php-fpm.sock'
+
+- name: php-fpm change listen owner
+  replace:
+    path: "{{ dest_php_fpm_conf }}"
+    regexp: ';listen.owner = nobody'
+    replace: 'listen.owner = nginx'
+
+- name: php-fpm change listen group
+  replace:
+    path: "{{ dest_php_fpm_conf }}"
+    regexp: ';listen.group = nobody'
+    replace: 'listen.group = nginx'
+
+- name: change directive in php.ini
+  replace:
+    path: "{{ dest_php_ini }}"
+    regexp: ';cgi.fix_pathinfo=1'
+    replace: 'cgi.fix_pathinfo=0'

@@ -1,0 +1,18 @@
+---
+# tasks for role web-server-nginx
+
+- name: get synax status
+  shell: nginx -t
+  register: nginx_syntax_status
+
+- name: get nginx service status
+  shell: systemctl status nginx
+  register: nginx_service_status
+
+- name: show syntax status
+  debug:
+    var: nginx_syntax_status.stderr_lines
+
+- name: show service nginx status
+  debug:
+    var: nginx_service_status.stdout_lines 

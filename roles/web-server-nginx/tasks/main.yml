@@ -1,0 +1,12 @@
+---
+# tasks file for web-server-nginx
+- include: install.yml
+- include: change_config.yml
+- include: allow_connect_db.yml
+- include: delete.yml
+- include: web-page.yml
+- include: allow_web-traffic.yml
+- include: configure_https.yml
+- include: start.yml
+- include: change_perms.yml
+- include: check_status.yml

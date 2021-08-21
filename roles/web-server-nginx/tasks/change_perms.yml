@@ -1,0 +1,9 @@
+---
+# tasks for role web-server-nginx
+
+- name: change gorup on file
+  file:
+    path: "{{ path_err_file }}" 
+    owner: root
+    group: nginx
+    mode: '0660'

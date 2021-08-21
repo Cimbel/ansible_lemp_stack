@@ -1,0 +1,26 @@
+---
+# vars file for web-server-nginx
+dest_index: "/usr/share/nginx/html/index.php"
+dest_del_nginx_conf: "/etc/nginx/nginx.conf"
+dest_del_index: "/usr/share/nginx/html/index.html"
+dest_php_fpm_conf: "/etc/php-fpm.d/www.conf"
+dest_php_ini: "/etc/php.ini"
+path_ssl_dir: "/etc/nginx/ssl"
+path_ssl_key: "/etc/nginx/ssl/lemp.key"
+path_ssl_cert: "/etc/nginx/ssl/lemp.crt"
+path_nginx_conf: "/etc/nginx/nginx.conf"
+path_err_file: "/var/log/nginx/error.log"
+php_packages:
+  - php
+  - php-common
+  - php-opcache
+  - php-mcrypt
+  - php-cli
+  - php-gd
+  - php-curl
+  - php-mysqlnd
+  - php-fpm
+  - php-pdo
+  - php-mysql
+  - policycoreutils-python
+  - yum-utils

@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+<head>
+  <title>Ansible homepage</title>
+  <meta charset="utf8">
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+#ansible-h1{
+  color: green;
+}
+</style>
+</head>
+<body>
+  <h1 id="ansible-h1">Ansible h1 header(Nginx)!</h1>
+<?php 
+try{
+    $database = new PDO('mysql:host={{ hostvars.logan.ansible_host }};dbname={{ db_name }}', "{{ db_user }}", "{{ db_pass }}");
+    echo "Connection to database is established!";
+    $id_user = 1;
+    $query = $database->prepare("SELECT * FROM {{ db_table }} WHERE id = ?");
+    $query->execute([$id_user]);
+    while($row = $query->fetch(PDO::FETCH_OBJ)){
+        echo <<< html
+        <table style="width:100%">
+        <tr>
+        <th>Id</th>
+        <th>User</th>
+        <th>Description</th>
+        </tr>
+        <tr>
+        <td>{$row->id}</td>
+        <td>{$row->new_user}</td>
+        <td>{$row->descript}</td>
+        </tr>
+        </table>
+        html;
+    }
+
+}catch(Exception $e){
+    echo "Error connecting to database:" . $e->getMessage();
+}
+?>
+  <p>My ip is: <strong>{{ hostvars.roma.ansible_host }}</strong></p>
+</body>
+</html>

@@ -1,0 +1,21 @@
+---
+# tasks file for role web-server-nginx
+
+- name: allow http
+  firewalld:
+    zone: public
+    state: enabled
+    service: http
+    permanent: yes
+
+- name: allow https
+  firewalld:
+    zone: public
+    state: enabled
+    service: https
+    permanent: yes
+
+- name: reload firewalld
+  service:
+    name: firewalld
+    state: reloaded

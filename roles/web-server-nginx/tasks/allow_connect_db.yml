@@ -1,0 +1,7 @@
+---
+# allow httpd connect to db
+- name: Allow httpd connect to database
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: true
+    persistent: yes

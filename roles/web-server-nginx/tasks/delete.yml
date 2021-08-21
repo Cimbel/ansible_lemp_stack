@@ -1,0 +1,12 @@
+---
+# delete task for role web-server-nginx
+
+- name: delete common index.html
+  file:
+    dest: "{{ dest_del_index }}"
+    state: absent
+
+- name: delete common nginx conf
+  file:
+    dest: "{{ dest_del_nginx_conf }}" 
+    state: absent

@@ -1,0 +1,10 @@
+---
+# files task for role web-server-nginx
+
+- name: send index.php
+  template:
+    src: index.php.j2
+    dest: "{{ dest_index }}" 
+    owner: root
+    group: nginx
+    mode: '0660'

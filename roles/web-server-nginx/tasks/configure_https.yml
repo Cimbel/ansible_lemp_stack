@@ -1,0 +1,23 @@
+---
+# tasks file for role web-server-nginx
+
+- name: create directory for storing ssl certificates
+  file:
+    path: "{{ path_ssl_dir }}" 
+    state: directory
+    mode: '0755'
+
+- name: generate ssl selfsinged certificates
+  shell: |
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \ 
+    -keyout "{{ path_ssl_key }}" \
+    -out "{{ path_ssl_cert }}" \
+    -subj '/C=US/ST=New York/L=New York/O=IT/OU=HostingTeam/CN={{ hostvars.roma.ansible_host }}/emailAddress=test@mail.com'
+
+- name: template nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: "{{ path_nginx_conf }}"
+    mode: '0660'
+    owner: root
+    group: nginx

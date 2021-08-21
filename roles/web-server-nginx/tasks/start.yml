@@ -1,0 +1,14 @@
+---
+# start task for role web-server-nginx
+
+- name: start and enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: start and enable php-fpm
+  service:
+    name: php-fpm
+    state: started
+    enabled: yes
